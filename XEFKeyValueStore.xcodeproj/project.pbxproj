@@ -15,6 +15,7 @@
 		4E51C46E1B749EBD001ED1FD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E51C46C1B749EBD001ED1FD /* LaunchScreen.xib */; };
 		4E51C47A1B749EBD001ED1FD /* XEFKeyValueStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E51C4791B749EBD001ED1FD /* XEFKeyValueStoreTests.m */; };
 		4E51C4861B749F3C001ED1FD /* XEFKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E51C4851B749F3C001ED1FD /* XEFKeyValueStore.m */; };
+		4EA27B021B79DA3D0042232D /* TimerCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA27B011B79DA3D0042232D /* TimerCount.m */; };
 		7E5B53A3B4D6C39734B075AA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 386895306F0958ECD0E4C597 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,8 @@
 		4E51C4791B749EBD001ED1FD /* XEFKeyValueStoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XEFKeyValueStoreTests.m; sourceTree = "<group>"; };
 		4E51C4841B749F3C001ED1FD /* XEFKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XEFKeyValueStore.h; path = XEFKeyValueStore/XEFKeyValueStore.h; sourceTree = "<group>"; };
 		4E51C4851B749F3C001ED1FD /* XEFKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XEFKeyValueStore.m; path = XEFKeyValueStore/XEFKeyValueStore.m; sourceTree = "<group>"; };
+		4EA27B001B79DA3D0042232D /* TimerCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerCount.h; sourceTree = "<group>"; };
+		4EA27B011B79DA3D0042232D /* TimerCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerCount.m; sourceTree = "<group>"; };
 		63866A697CB6BB944A98497D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +109,8 @@
 				4E51C4641B749EBD001ED1FD /* ViewController.h */,
 				4E51C4651B749EBD001ED1FD /* ViewController.m */,
 				4E51C4671B749EBD001ED1FD /* Main.storyboard */,
+				4EA27B001B79DA3D0042232D /* TimerCount.h */,
+				4EA27B011B79DA3D0042232D /* TimerCount.m */,
 				4E51C46A1B749EBD001ED1FD /* Images.xcassets */,
 				4E51C46C1B749EBD001ED1FD /* LaunchScreen.xib */,
 				4E51C45D1B749EBD001ED1FD /* Supporting Files */,
@@ -291,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EA27B021B79DA3D0042232D /* TimerCount.m in Sources */,
 				4E51C4661B749EBD001ED1FD /* ViewController.m in Sources */,
 				4E51C4631B749EBD001ED1FD /* AppDelegate.m in Sources */,
 				4E51C4601B749EBD001ED1FD /* main.m in Sources */,

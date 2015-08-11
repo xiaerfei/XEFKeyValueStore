@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+
+@interface XEFKeyValueItem : NSObject
+
+@property (strong, nonatomic) NSString *itemId;
+@property (strong, nonatomic) id       itemObject;
+@property (strong, nonatomic) NSDate   *createdTime;
+
+@end
+
+
 @interface XEFKeyValueStore : NSObject
 
 @end
