@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "XEFKeyValueStore.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    XEFKeyValueStore *store = [[XEFKeyValueStore alloc] initDBWithName:@"test.db"];
+    [store createTableWithName:@"userInfo"];
+    [store putObject:@{@"username":@"hahaha",@"age":@"26",@"sex":@"boy"} withId:@"user" intoTable:@"userInfo"];
+    NSDictionary *dict = [store getObjectById:@"user" fromTable:@"userInfo"];
+    NSLog(@"%@",dict);
+    [store putObject:@{@"username":@"lalal",@"age":@"26",@"sex":@"boy"} withId:@"user" intoTable:@"userInfo"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
