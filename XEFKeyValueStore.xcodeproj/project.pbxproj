@@ -14,7 +14,7 @@
 		4E51C46B1B749EBD001ED1FD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E51C46A1B749EBD001ED1FD /* Images.xcassets */; };
 		4E51C46E1B749EBD001ED1FD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E51C46C1B749EBD001ED1FD /* LaunchScreen.xib */; };
 		4E51C47A1B749EBD001ED1FD /* XEFKeyValueStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E51C4791B749EBD001ED1FD /* XEFKeyValueStoreTests.m */; };
-		4E51C4861B749F3C001ED1FD /* XEFKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E51C4851B749F3C001ED1FD /* XEFKeyValueStore.m */; };
+		4E51C4861B749F3C001ED1FD /* RYKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E51C4851B749F3C001ED1FD /* RYKeyValueStore.m */; };
 		4EA27B021B79DA3D0042232D /* TimerCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA27B011B79DA3D0042232D /* TimerCount.m */; };
 		7E5B53A3B4D6C39734B075AA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 386895306F0958ECD0E4C597 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -45,8 +45,8 @@
 		4E51C4731B749EBD001ED1FD /* XEFKeyValueStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XEFKeyValueStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E51C4781B749EBD001ED1FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E51C4791B749EBD001ED1FD /* XEFKeyValueStoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XEFKeyValueStoreTests.m; sourceTree = "<group>"; };
-		4E51C4841B749F3C001ED1FD /* XEFKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XEFKeyValueStore.h; path = XEFKeyValueStore/XEFKeyValueStore.h; sourceTree = "<group>"; };
-		4E51C4851B749F3C001ED1FD /* XEFKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XEFKeyValueStore.m; path = XEFKeyValueStore/XEFKeyValueStore.m; sourceTree = "<group>"; };
+		4E51C4841B749F3C001ED1FD /* RYKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RYKeyValueStore.h; path = XEFKeyValueStore/RYKeyValueStore.h; sourceTree = "<group>"; };
+		4E51C4851B749F3C001ED1FD /* RYKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RYKeyValueStore.m; path = XEFKeyValueStore/RYKeyValueStore.m; sourceTree = "<group>"; };
 		4EA27B001B79DA3D0042232D /* TimerCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerCount.h; sourceTree = "<group>"; };
 		4EA27B011B79DA3D0042232D /* TimerCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerCount.m; sourceTree = "<group>"; };
 		63866A697CB6BB944A98497D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -147,8 +147,8 @@
 		4E51C4831B749F0E001ED1FD /* XEFKeyValueStore */ = {
 			isa = PBXGroup;
 			children = (
-				4E51C4841B749F3C001ED1FD /* XEFKeyValueStore.h */,
-				4E51C4851B749F3C001ED1FD /* XEFKeyValueStore.m */,
+				4E51C4841B749F3C001ED1FD /* RYKeyValueStore.h */,
+				4E51C4851B749F3C001ED1FD /* RYKeyValueStore.m */,
 			);
 			name = XEFKeyValueStore;
 			sourceTree = "<group>";
@@ -300,7 +300,7 @@
 				4E51C4661B749EBD001ED1FD /* ViewController.m in Sources */,
 				4E51C4631B749EBD001ED1FD /* AppDelegate.m in Sources */,
 				4E51C4601B749EBD001ED1FD /* main.m in Sources */,
-				4E51C4861B749F3C001ED1FD /* XEFKeyValueStore.m in Sources */,
+				4E51C4861B749F3C001ED1FD /* RYKeyValueStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

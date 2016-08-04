@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface XEFKeyValueItem : NSObject
+@interface RYKeyValueItem : NSObject
 
 @property (strong, nonatomic) NSString *itemId;
 @property (strong, nonatomic) id       itemObject;
@@ -18,7 +18,7 @@
 @end
 
 
-@interface XEFKeyValueStore : NSObject
+@interface RYKeyValueStore : NSObject
 - (id)initDBWithName:(NSString *)dbName;
 
 - (void)createTableWithName:(NSString *)tableName;
@@ -35,7 +35,7 @@
 
 - (id)getObjectById:(NSString *)objectId fromTable:(NSString *)tableName;
 
-- (XEFKeyValueItem *)getYTKKeyValueItemById:(NSString *)objectId fromTable:(NSString *)tableName;
+- (RYKeyValueItem *)getYTKKeyValueItemById:(NSString *)objectId fromTable:(NSString *)tableName;
 
 - (void)putString:(NSString *)string withId:(NSString *)stringId intoTable:(NSString *)tableName;
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 RongYu100. All rights reserved.
 //
 
-#import "XEFKeyValueStore.h"
+#import "RYKeyValueStore.h"
 #import <FMDatabase.h>
 #import <FMDatabaseAdditions.h>
 #import <FMDatabaseQueue.h>
@@ -42,7 +42,7 @@ static NSString *const COUNT_ALL_SQL    = @"SELECT count(*) as num from %@";
 static NSString *const DELETE_ITEM_SQL  = @"DELETE from %@ where id = ?";
 static NSString *const DELETE_ITEMS_SQL = @"DELETE from %@ where id in ( %@ )";
 static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id like ? ";
-@implementation XEFKeyValueItem
+@implementation RYKeyValueItem
 
 - (NSString *)description
 {
@@ -52,13 +52,13 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
 @end
 
 
-@interface XEFKeyValueStore ()
+@interface RYKeyValueStore ()
 
 @property (strong, nonatomic) FMDatabaseQueue * dbQueue;
 
 @end
 
-@implementation XEFKeyValueStore
+@implementation RYKeyValueStore
 
 #pragma mark - public methods
 - (id)initDBWithName:(NSString *)dbName
@@ -75,6 +75,13 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
     return self;
 }
 
+- (void)dealloc
+{
+    [self close];
+}
+
+
+
 /**
  *   @author xiaerfei, 15-08-11 18:08:43
  *
@@ -83,7 +90,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
  *   @param tableName
  */
 - (void)createTableWithName:(NSString *)tableName {
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return;
     }
     NSString * sql = [NSString stringWithFormat:CREATE_TABLE_SQL, tableName];
@@ -97,7 +104,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
 }
 
 - (BOOL)isTableExists:(NSString *)tableName{
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return NO;
     }
     __block BOOL result;
@@ -111,7 +118,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
 }
 
 - (void)clearTable:(NSString *)tableName {
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return;
     }
     NSString * sql = [NSString stringWithFormat:CLEAR_ALL_SQL, tableName];
@@ -133,7 +140,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
  *   @param tableName tableName
  */
 - (void)putObject:(id)object withId:(NSString *)objectId intoTable:(NSString *)tableName {
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return;
     }
     NSError * error;
@@ -154,8 +161,8 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
     }
 }
 
-- (XEFKeyValueItem *)getYTKKeyValueItemById:(NSString *)objectId fromTable:(NSString *)tableName {
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+- (RYKeyValueItem *)getYTKKeyValueItemById:(NSString *)objectId fromTable:(NSString *)tableName {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return nil;
     }
     NSString * sql = [NSString stringWithFormat:QUERY_ITEM_SQL, tableName];
@@ -177,7 +184,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
             debugLog(@"ERROR, faild to prase to json");
             return nil;
         }
-        XEFKeyValueItem * item = [[XEFKeyValueItem alloc] init];
+        RYKeyValueItem * item = [[RYKeyValueItem alloc] init];
         item.itemId = objectId;
         item.itemObject = result;
         item.createdTime = createdTime;
@@ -188,7 +195,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
 }
 
 - (id)getObjectById:(NSString *)objectId fromTable:(NSString *)tableName {
-    XEFKeyValueItem * item = [self getYTKKeyValueItemById:objectId fromTable:tableName];
+    RYKeyValueItem * item = [self getYTKKeyValueItemById:objectId fromTable:tableName];
     if (item) {
         return item.itemObject;
     } else {
@@ -230,7 +237,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
 }
 
 - (NSArray *)getAllItemsFromTable:(NSString *)tableName {
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return nil;
     }
     NSString * sql = [NSString stringWithFormat:SELECT_ALL_SQL, tableName];
@@ -238,7 +245,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
     [_dbQueue inDatabase:^(FMDatabase *db) {
         FMResultSet * rs = [db executeQuery:sql];
         while ([rs next]) {
-            XEFKeyValueItem * item = [[XEFKeyValueItem alloc] init];
+            RYKeyValueItem * item = [[RYKeyValueItem alloc] init];
             item.itemId = [rs stringForColumn:@"id"];
             item.itemObject = [rs stringForColumn:@"json"];
             item.createdTime = [rs dateForColumn:@"createdTime"];
@@ -248,7 +255,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
     }];
     // parse json string to object
     NSError * error;
-    for (XEFKeyValueItem * item in result) {
+    for (RYKeyValueItem * item in result) {
         error = nil;
         id object = [NSJSONSerialization JSONObjectWithData:[item.itemObject dataUsingEncoding:NSUTF8StringEncoding]
                                                     options:(NSJSONReadingAllowFragments) error:&error];
@@ -263,7 +270,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
 
 - (NSUInteger)getCountFromTable:(NSString *)tableName
 {
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return 0;
     }
     NSString * sql = [NSString stringWithFormat:COUNT_ALL_SQL, tableName];
@@ -279,7 +286,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
 }
 
 - (void)deleteObjectById:(NSString *)objectId fromTable:(NSString *)tableName {
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return;
     }
     NSString * sql = [NSString stringWithFormat:DELETE_ITEM_SQL, tableName];
@@ -293,7 +300,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
 }
 
 - (void)deleteObjectsByIdArray:(NSArray *)objectIdArray fromTable:(NSString *)tableName {
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return;
     }
     NSMutableString *stringBuilder = [NSMutableString string];
@@ -317,7 +324,7 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
 }
 
 - (void)deleteObjectsByIdPrefix:(NSString *)objectIdPrefix fromTable:(NSString *)tableName {
-    if ([XEFKeyValueStore checkTableName:tableName] == NO) {
+    if ([RYKeyValueStore checkTableName:tableName] == NO) {
         return;
     }
     NSString *sql = [NSString stringWithFormat:DELETE_ITEMS_WITH_PREFIX_SQL, tableName];

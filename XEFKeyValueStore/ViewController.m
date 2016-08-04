@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "XEFKeyValueStore.h"
+#import "RYKeyValueStore.h"
 
 @interface ViewController ()
 
@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    XEFKeyValueStore *store = [[XEFKeyValueStore alloc] initDBWithName:@"test.db"];
+    RYKeyValueStore *store = [[RYKeyValueStore alloc] initDBWithName:@"test.db"];
     [store createTableWithName:@"userInfo"];
     [store putObject:@{@"username":@"hahaha",@"age":@"26",@"sex":@"boy"} withId:@"user" intoTable:@"userInfo"];
     NSDictionary *dict = [store getObjectById:@"user" fromTable:@"userInfo"];
